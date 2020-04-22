@@ -9,6 +9,4 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="/static/js/main.js"></script>
     </head>
-    <div class="container-fluid text-center top-container">
-        <img src="images/prison_icon.png">
-    </div>
+    

@@ -2,11 +2,16 @@
 <html>
     <?php 
 		include 'includes/header.php';
+	?>
+	<body> 
+		<div class="container-fluid text-center top-container">
+			<img src="images/prison_icon.png">
+		</div>
+	<?php
 		include "server/connect.php";
 		$sql = "SELECT fname,lname,pno,bdate,sex,cellno,block_name FROM prisoners,cells,blocks where cellno = cell_no and block_id = bid ORDER BY pno";
-    	$result = $conn->query($sql);
-    ?>   
-    <body> 
+		$result = $conn->query($sql);
+	?>   
         <div class='container'>
         <?php include 'includes/nav.php'; ?>
 			<div class="row">
@@ -41,7 +46,7 @@
 								<td><?php echo $row["cellno"]; ?></td>
 								<td><?php echo $row["block_name"]; ?></td>
 								<td>
-									<form action="prisoner_details.php/pno=<?php echo $row['pno']; ?>" method="GET">
+									<form action="prisoner_details.php" method="GET">
 										<input type="hidden" name="pnum" value="<?php $row['pno']; ?>"/>
 									<button>Details</button>
 									</form>

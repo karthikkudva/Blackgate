@@ -1,4 +1,7 @@
 <?php
+    //obsolete
+
+    
     include "connect.php";
     $uname = $_POST["username"];
     $pwd = $_POST["password"];
