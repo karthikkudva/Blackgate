@@ -1,7 +1,7 @@
 <?php session_start(); ?>
-<div class="container-fluid text-center top-container">
+<!-- <div class="container-fluid text-center top-container">
     <img src="images/prison_icon.png">
-</div>
+</div> -->
 <header>
     <nav>
         <ul class="nav nav-pills">
