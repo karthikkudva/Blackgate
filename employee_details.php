@@ -1,37 +1,55 @@
-{% extends "layout2.html" %}
+<!DOCTYPE html>
+<html>
+    <?php 
+        include 'includes/header.php';
+        include "server/connect.php";
+        $eno = $_GET["eno"];
+		$emp_query = "SELECT * FROM employee where ssn=".$eno;
+        $emp_result = $conn->query($emp_query);
+        $emp_data = $emp_result->fetch_assoc();
 
-{% block content %}
-<div class="container-fluid text-center top-container">
-    <img src="{{ url_for('static',filename = 'images/noimage.jpg') }}">  <!-- /static/images/prison_icon.png -->
-</div>
-<div class="container">
-    <div class="row">
-        <div class="col-md-12 text-center">
-            <h1>Employee No. {{data.emp.ssn }}</h1>
-            <form name="login" action="{{url_for('employees')}}" method="post">
-                First Name : <input class="form-control" type = "text" name = "fname" value = "{{data.emp.fname }}" /><br />
-                Last Name  : <input class="form-control" type = "text" name = "lname" value = "{{data.emp.lname }}" /><br />
-                DOB        : <input class="form-control" type = "date" name = "dob" value = "{{data.emp.bdate}}" style="background-color: #f1f1f1;"/><br />
-                Address    : <input class="form-control" type = "text" name = "address" value = "{{data.emp.address }}" /><br />
-                Sex        : <select class="form-control" name = "sex" style="background-color: #f1f1f1;">
-                                <option value = "M" {% if data.emp.sex == 'M' %} selected {% endif %}>Male</option>
-                                <option value = "F" {% if data.emp.sex == 'F' %} selected {% endif %}>Female</option>
-                                <option value = "O" {% if data.emp.sex == 'O' %} selected {% endif %}>Other</option>
-                            </select><br />
-                Designation :<input class="form-control" type = "text" name = "designation" value = "{{data.emp.designation}}" style="background-color: #f1f1f1;"/><br />
-                Salary      :<input class="form-control" type = "number" name = "salary" value = "{{data.emp.salary}}" style="background-color: #f1f1f1;"/><br />
-                Supervisor  :
-                <select class="form-control" name = "super_ssn" style="background-color: #f1f1f1;">
-                    <option value = "">--</option>
-                {% for super in data.sup %}
-                    <option value = "{{super.ssn}}" {% if data.emp.supervisor == super.ssn %} selected {% endif %}>{{super.fname}} {{super.lname}}</option>
-                {% endfor %}
-                </select>
-                Block       : <input class="form-control" type = "text" name = "block"   value = "{{data.emp.block}}" style="background-color: #f1f1f1;"/><br />
-                <input type = "hidden" name = "pno" value = "{{data.emp.ssn }}" />
-                <input class="btn-submit" type="submit" name="submit" value="Submit">
-            </form>
+        $sup_query = "SELECT ssn,fname,lname from employee";
+        $sup_results = $conn->query($sup_query);
+    ?>   
+    <body>
+        <div class="container-fluid text-center top-container">
+            <img src="images/noimage.jpg">
         </div>
-	</div>
-</div>
-{% endblock  %}
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <h1>Employee No. <?php echo $emp_data['ssn']; ?></h1>
+                    <form name="login" action="employees.php" method="post">
+                        First Name : <input class="form-control" type = "text" name = "fname" value = "<?php echo $emp_data['fname']; ?>" /><br />
+                        Last Name  : <input class="form-control" type = "text" name = "lname" value = "<?php echo $emp_data['lname']; ?>" /><br />
+                        DOB        : <input class="form-control" type = "date" name = "dob" value = "<?php echo $emp_data['bdate']; ?>" style="background-color: #f1f1f1;"/><br />
+                        Address    : <input class="form-control" type = "text" name = "address" value = "<?php echo $emp_data['address']; ?>" /><br />
+                        Sex        : <select class="form-control" name = "sex" style="background-color: #f1f1f1;">
+                                        <option value = "M" <?php echo ($emp_data['sex']=='M')?"selected":""; ?> >Male</option>
+                                        <option value = "F" <?php echo ($emp_data['sex']=='F')?"selected":""; ?> >Female</option>
+                                        <option value = "O" <?php echo ($emp_data['sex']=='O')?"selected":""; ?> >Other</option>
+                                    </select><br />
+                        Designation :<input class="form-control" type = "text" name = "designation" value = "<?php echo $emp_data['designation']; ?>" style="background-color: #f1f1f1;"/><br />
+                        Salary      :<input class="form-control" type = "number" name = "salary" value = "<?php echo $emp_data['salary']; ?>" style="background-color: #f1f1f1;"/><br />
+                        Supervisor  :
+                        <select class="form-control" name = "super_ssn" style="background-color: #f1f1f1;">
+                            <option value = "">--</option>
+                        <?php while ($sup_data = $sup_results->fetch_assoc()){ ?>
+                            <option value = "<?php echo $sup_data['ssn']; ?>" <?php echo ($emp_data['super_ssn']==$sup_data['ssn'])?"selected":""; ?>><?php echo $sup_data['fname']." ".$sup_data['lname']; ?></option>
+                        <?php } ?>
+                        </select>
+                        <br/>
+                        Block       : <input class="form-control" type = "text" name = "block" value = "<?php echo $emp_data['bno']; ?>" style="background-color: #f1f1f1;"/><br />
+                        <input type = "hidden" name = "pno" value = "<?php echo $emp_data['ssn']; ?>" />
+                        <input class="btn-submit" type="submit" name="submit" value="Submit">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+<script>
+    $(document).ready(function(){
+        
+    });
+</script>

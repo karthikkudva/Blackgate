@@ -51,7 +51,7 @@
 									<td scope="col"><?php echo $row['block_name']; ?></td>
 									<td>
 										<form action="employee_details.php" method="GET">
-											<input type="hidden" name="enum" value="<?php echo $row['ssn']; ?>"/>
+											<input type="hidden" name="eno" value="<?php echo $row['ssn']; ?>"/>
 										<button>Details</button>
 										</form>
 									</td>

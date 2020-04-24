@@ -47,7 +47,7 @@
 								<td><?php echo $row["block_name"]; ?></td>
 								<td>
 									<form action="prisoner_details.php" method="GET">
-										<input type="hidden" name="pnum" value="<?php $row['pno']; ?>"/>
+										<input type="hidden" name="pno" value="<?php echo $row['pno']; ?>"/>
 									<button>Details</button>
 									</form>
 								</td>
