@@ -3,7 +3,6 @@
     <?php 
         include 'includes/header.php';
         include "server/connect.php";
-        // echo "username : ".$uname."\npassword : ".$pwd;
         if($_POST){
             $uname = $_POST["username"];
             $pwd = $_POST["password"];
@@ -11,14 +10,11 @@
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
                 $user = $result->fetch_assoc();
-                // echo "<h2>Welcome Mr.".$user['fname']." ".$user['lname']."</h2><br>";
-                // $_SESSION['username'] = $uname;
                 header("Location: http://localhost/blackgate/index.php");
                 echo "<script> alert('Connected Successfully!'); </script>";
             }
             else{
                 echo "<script>alert('Invalid Credentials. Try Again!'); </script>";
-                // header("Location: http://localhost/blackgate/login.php");
             }
         }
     ?>
