@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
-    <?php 
+	<?php 
+		$page = "employees";
 		include 'includes/header.php';
 	?>
 	<body> 

@@ -1,4 +1,4 @@
-<script>
+<!-- <script>
         function validate(){
             $.ajax({
                 url: "server/login.php",
@@ -22,4 +22,6 @@
                 }
             });
         }
-    </script>
+</script> -->
+
+<a href="http://localhost/blackgate/employee_details.php?eno=0"><button>Details</button></a>

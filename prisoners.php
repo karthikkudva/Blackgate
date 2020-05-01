@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
-    <?php 
+	<?php 
+		$page = "prisoners";
 		include 'includes/header.php';
 	?>
 	<body> 
