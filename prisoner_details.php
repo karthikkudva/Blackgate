@@ -28,7 +28,7 @@
             <div class="row">
                 <div class="col-md-12 text-center">
                     <h1 style="text-center">Prisoner No. <?php echo $pno; ?></h1>
-                    <form name="login" action="" method="post" onsubmit="return validate();">
+                    <form name="login" action="prisoners.php" method="post" onsubmit="return validate();">
                         <label><b>First Name:</b></label>
                         <input class="form-control" type = "text" id = "fname" name = "fname" value = "<?php echo $pdata['fname']; ?>" /><br />
                         <label><b>Last Name:</b></label>

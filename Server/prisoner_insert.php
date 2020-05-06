@@ -17,11 +17,7 @@
     try{
         //updating prisoner table
         $ins_query = "UPDATE prisoners SET fname='".$fname."', lname='".$lname."' ,bdate='".$bdate."', sex='".$sex."', ssn='".$ssn.
-        "',start='".$start."'";
-        if($end!=""){
-            $ins_query = $ins_query.", end='".$end."'";
-        }
-        $ins_query = $ins_query.", cellno=".$cellno." WHERE ssn=".$ssn;
+        "',start='".$start."', end='".$end."', cellno=".$cellno." WHERE ssn=".$ssn;
         if($conn->query($ins_query)==true){
 
             //deleting values from offenses to avoid redundancy
